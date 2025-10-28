@@ -15,10 +15,22 @@
             WEB DEVELOPER - APP DESIGNER - UI DESIGNER - BENGALI(First Language) - English(Second Language) - Hindi(Third Language) &nbsp;
         </div>
     </div> -->
+    <nav>
+        <a href="#"><img src="./images/PortfolioLogo.png" alt="My Logo" class="logo"></a>
+                <ul id="sidemenu">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Service</a></li>
+                    <li><a href="#portfolio">My Work</a></li>
+                    <li><a href="#contect">Contact</a></li> 
+                    <i class="fa-solid fa-xmark" onclick="closemenu()"></i>
+                </ul>
+        <i class="fa-solid fa-bars" onclick="openmenu()"></i>
+    </nav>
 <div id="blinker" class="shadow-on">
     <div id="header">
         <div class="container">
-            <nav>
+            <!-- <nav>
                 <img src="./images/PortfolioLogo.png" alt="My Logo" class="logo">
                 <ul id="sidemenu">
                     <li><a href="#">Home</a></li>
@@ -29,7 +41,7 @@
                     <i class="fa-solid fa-xmark" onclick="closemenu()"></i>
                 </ul>
                 <i class="fa-solid fa-bars" onclick="openmenu()"></i>
-            </nav>
+            </nav> -->
             <div class="header-text">
                 <!-- <p>WEB DEVELOPER</p>  -->
                 <h1>Hi, I'm <span id="my-name">
@@ -58,7 +70,7 @@
                     title="Click Here To Visit My GitHub Profile" target=""><i 
                         class="fa-brands fa-square-github"></i></a>
             </div>
-            <div><img src="./images/formal photo 2.png" alt="my Formal Image" class="formal-img"></div>
+            <div><img src="./images/myphoto (2).jpg" alt="my Formal Image" class="formal-img"></div>
         </div>
     </div>
 </div>
@@ -71,7 +83,7 @@
                     <div class="about-col-1">
                         <div class="layer1">
                             <div class="blur"></div>
-                            <img src="./images/MyPhoto.jpg" alt="My Photo" title="My Photo" class="my-photo">
+                            <img src="./images/myphoto (3).jpg" alt="My Photo" title="My Photo" class="my-photo">
                         </div>
                     </div>
                 <div class="about-col-2">
@@ -263,8 +275,8 @@
             <div class="contect-left">
                 <h1 class="sub-title">Get in <span id="xyz">Touch</span></h1>
                 <p><i class="fa-regular fa-envelope"></i><span>Email:</span> sundarmaity111@gmail.com</p>
-                <p><i class="fa-solid fa-phone"></i><span>Phone number:</span> +91 7319185590</p>
-                <p><i class="fa-brands fa-whatsapp"></i><span>WhatsApp number:</span> +91 8653021830</p>
+                <p><i class="fa-solid fa-phone"></i><span>Phone number:</span>  +91 8653021830 </p>
+                <p><i class="fa-brands fa-whatsapp"></i><span>WhatsApp number:</span> +91 7319185590 </p>
                 <div class="social-icon">
                     <a href="https://www.facebook.com/profile.php?id=100084006797950"><i class="fa-brands fa-facebook-f"></i></a>
                     <a href="https://wa.link/jmwfw1"><i class="fa-brands fa-whatsapp"></i></a>
@@ -283,9 +295,9 @@
                 <form name="submit-to-google-sheet" action="">
                     <div class="fill-up">
                         <input type="text" name="Name" placeholder="Enter Your Full Name*" required>
-                        <input type="text" name="E-mail" placeholder="Enter Your E-mail*" required>
+                        <input type="text" name="Email" placeholder="Enter Your E-mail*" required>
                         <input type="text" name="Phone Number" placeholder="Enter Your Mobile Number*" required>
-                        <textarea name="Message" rows="4" placeholder="Leave Your Message"></textarea>
+                        <textarea name="Massage" rows="4" placeholder="Leave Your Message"></textarea>
                         <button type="submit" class="btn btn2" title="Click Here To Submit The Form"><i class="fa-solid fa-file-export"></i>submit</button>
                     </div>
                     <iframe
@@ -318,7 +330,7 @@
             <i class="fas fa-question"></i>
             </button>
             <div class="help-options">
-            <a href="/AdvanceAi ChatBot/Index.html" class="help-option"
+            <a href="../AdvanceAi ChatBot/Index.html" class="help-option"
                 ><i class="fa-brands fa-bots"></i>AI ChatBot</a
             >
             <a href="#" class="help-option" id="liveChatOption"
@@ -421,7 +433,7 @@
 
     <!-- Script For Contact form -->
 
-    <script>
+    <!-- <script>
         
         const scriptURL = 'https://script.google.com/macros/s/AKfycbwIjqBkRkjwnxkauCrDaa1Vu_9RZYwtRzT29LSBe9pxYWoeuj1EIlA4QYhCilUNU2BPAw/exec'
         const form = document.forms['submit-to-google-sheet']
@@ -439,13 +451,24 @@
                 })
                 .catch(error => console.error('Error!', error.message))
         })
-    </script>
+    </script> -->
+
+    <script>
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbyQDdoQdDeX11SfUAubDX_6FD3uqUwWmdOk2uffBod0t-h4nsXkw6r6_3_YKy_eh957jg/exec'
+  const form = document.forms['submit-to-google-sheet']
+
+  form.addEventListener('submit', e => {
+    e.preventDefault()
+    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+      .then(response => console.log('Success!', response))
+      .catch(error => console.error('Error!', error.message))
+  })
+</script>
+
      <script>
         const ticker = document.getElementById("tickerText");
         const clone = ticker.cloneNode(true);
         ticker.parentNode.appendChild(clone);
      </script>
 </body>
-
 </html>
-
