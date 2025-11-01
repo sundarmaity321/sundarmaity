@@ -254,7 +254,7 @@ document.addEventListener("DOMContentLoaded", function () {
       answer: "This is ai chat bot, you can search to know something",
       mainLink: {
         text: "Click Here",
-        href: "/AdvanceAi ChatBot/Index.html" /* <-- AI chat bot */,
+        href: "../AdvanceAi ChatBot/Index.html" /* <-- AI chat bot */,
       },
     },
     {
@@ -429,3 +429,4 @@ document.addEventListener("DOMContentLoaded", function () {
 //     blinker.classList.toggle("shadow-off");
 // }, 500); // Change every 500ms
 //   Blinker END
+
