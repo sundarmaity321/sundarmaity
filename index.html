@@ -2,8 +2,14 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <!-- Viewport meta tag is essential for responsiveness -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Welcome To My Portfolio</title>
+    <!-- Font Awesome for the checkmark icon -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
     <style>
       * {
         margin: 0;
@@ -13,14 +19,17 @@
       }
       body {
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
-        height: 100vh;
+        min-height: 100vh;
         background: #07252d;
         color: white;
+        padding: 20px;
+        text-align: center;
+        overflow-x: hidden;
       }
       .typing-container {
-        /* font-size:30px; */
         font-weight: bold;
         position: relative;
         font-size: 4em;
@@ -29,7 +38,6 @@
         text-transform: uppercase;
         width: 100%;
         text-align: center;
-        /* Reflection effect is only supported in WebKit browsers. For cross-browser compatibility, consider using a CSS gradient or a duplicated element for reflection if needed. */
         line-height: 0.7em;
         outline: none;
         animation: animate 5s linear infinite;
@@ -37,20 +45,15 @@
       .cursor {
         display: inline-block;
         width: 5px;
-        height: 20px;
+        height: 1.2em;
         background-color: white;
         margin-left: 5px;
         animation: blink 0.8s infinite;
       }
-      /* * Container for the button * */
       .container {
-        position: absolute;
-        top: 80%;
-        left: 45%;
-        transform: translate(-50% -60%);
+        margin-top: 4rem;
       }
 
-      /* Glowing hyperlink styled as a button */
       .glow-link-button {
         display: inline-block;
         padding: 12px 30px;
@@ -70,12 +73,83 @@
         cursor: pointer;
       }
 
-      /* Glow effect on hover */
       .glow-link-button:hover {
         background-color: #00ffcc;
         color: #000000;
         box-shadow: 0 0 20px #03bcf4, 0 0 30px #03bcf4 0 0 40px #03bcf4;
         transform: scale(1.1);
+      }
+
+      /* --- Custom Popup Styles (matching the image) --- */
+      .popup-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(
+          0,
+          0,
+          0,
+          0.5
+        ); /* Darker, semi-transparent background */
+        backdrop-filter: blur(3px); /* Slightly less blur */
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+        padding: 20px;
+      }
+      .popup-box {
+        background: #ffffff; /* White background for the box */
+        color: #333333; /* Darker text for contrast */
+        padding: 40px 30px; /* More padding */
+        border-radius: 10px; /* Slightly less rounded corners */
+        text-align: center;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Subtle shadow */
+        max-width: 450px; /* A bit wider */
+        width: 100%;
+        font-size: 1em;
+        display: flex; /* Use flex for internal layout */
+        flex-direction: column;
+        align-items: center;
+      }
+      .popup-box .icon {
+        color: #4caf50; /* Green color for the icon */
+        font-size: 60px; /* Large icon size */
+        margin-bottom: 20px;
+      }
+      .popup-box h2 {
+        font-size: 1.8em; /* Larger heading */
+        margin-bottom: 15px;
+        color: #333333;
+      }
+      .popup-box p {
+        font-size: 1em; /* Standard paragraph size */
+        line-height: 1.5;
+        margin-bottom: 30px;
+        color: #666666; /* Lighter text for the description */
+        max-width: 350px; /* Constrain text width */
+      }
+      .popup-button {
+        display: inline-block;
+        padding: 10px 40px; /* Wider button */
+        font-size: 16px;
+        font-weight: normal; /* Less bold */
+        text-transform: none; /* No uppercase */
+        text-decoration: none;
+        color: white; /* White text for the button */
+        background-color: #79c8d7; /* Soft blue-green */
+        border: none;
+        border-radius: 5px; /* Less rounded button */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Subtle button shadow */
+        transition: all 0.2s ease;
+        cursor: pointer;
+      }
+      .popup-button:hover {
+        background-color: #5bb2c2; /* Darker on hover */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transform: translateY(-2px); /* Slight lift effect */
       }
 
       @keyframes blink {
@@ -122,6 +196,74 @@
           box-shadow: 0 0 10px #03bcf4;
         }
       }
+
+      /* --- Responsive Media Queries --- */
+
+      /* For Tablets */
+      @media (max-width: 768px) {
+        .typing-container {
+          font-size: 3em;
+          letter-spacing: 8px;
+          line-height: 1em;
+        }
+        .glow-link-button {
+          font-size: 16px;
+          padding: 10px 25px;
+        }
+        .popup-box {
+          padding: 30px 20px;
+        }
+        .popup-box h2 {
+          font-size: 1.5em;
+        }
+        .popup-box p {
+          font-size: 0.95em;
+        }
+      }
+
+      /* For Phones */
+      @media (max-width: 480px) {
+        .typing-container {
+          font-size: 2.2em;
+          letter-spacing: 5px;
+          line-height: 1.2em;
+        }
+        .cursor {
+          margin-left: 3px;
+          width: 3px;
+        }
+        .glow-link-button {
+          font-size: 14px;
+          padding: 10px 20px;
+        }
+        .popup-box {
+          padding: 25px 15px;
+        }
+        .popup-box .icon {
+          font-size: 50px;
+          margin-bottom: 15px;
+        }
+        .popup-box h2 {
+          font-size: 1.3em;
+        }
+        .popup-box p {
+          font-size: 0.9em;
+          margin-bottom: 20px;
+          max-width: 90%;
+        }
+        .popup-button {
+          padding: 8px 30px;
+          font-size: 14px;
+        }
+      }
+
+      /* For very small phones */
+      @media (max-width: 360px) {
+        .typing-container {
+          font-size: 1.8em;
+          letter-spacing: 3px;
+        }
+      }
     </style>
   </head>
   <body>
@@ -132,18 +274,32 @@
 
     <div class="container" id="btn">
       <a
-        href= "Portfolio/index.html"
+        href="Portfolio/index.html"
         class="glow-link-button"
-        onclick="explore()"
+        onclick="explore(event)"
+        id="explore-link"
         >Explore</a
       >
+    </div>
+
+    <!-- --- Custom Popup HTML (matching the image) --- -->
+    <div class="popup-overlay" id="popup-overlay">
+      <div class="popup-box">
+        <div class="icon"><i class="fas fa-check-circle"></i></div>
+        <h2>Welcome!</h2>
+        <p>
+          Thank you for visiting my portfolio! Please press the "OK" button
+          below to explore.🥰🙏
+        </p>
+        <button class="popup-button" id="popup-ok">OK</button>
+      </div>
     </div>
 
     <script>
       const words = [
         "Hello!🥰",
-        "I'm SUNDAR MAITY...",
         "Welcome To My Portfolio🙏🏻",
+        "I'm SUNDAR MAITY...",
       ];
       let wordIndex = 0;
       let charIndex = 0;
@@ -172,18 +328,21 @@
           setTimeout(typeEffect, isDeleting ? speed / 2 : speed);
         }
       }
-      function explore() {
-        alert("This Portfolio Make For Desktop or Laptop Only For Now");
+
+      function explore(event) {
+        event.preventDefault();
+        document.getElementById("popup-overlay").style.display = "flex";
       }
+
+      document
+        .getElementById("popup-ok")
+        .addEventListener("click", function () {
+          document.getElementById("popup-overlay").style.display = "none";
+          const targetUrl = document.getElementById("explore-link").href;
+          window.location.href = targetUrl;
+        });
+
       typeEffect();
     </script>
   </body>
 </html>
-
-
-
-
-
-
-
-
