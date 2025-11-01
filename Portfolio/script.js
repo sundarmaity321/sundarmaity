@@ -429,4 +429,3 @@ document.addEventListener("DOMContentLoaded", function () {
 //     blinker.classList.toggle("shadow-off");
 // }, 500); // Change every 500ms
 //   Blinker END
-
