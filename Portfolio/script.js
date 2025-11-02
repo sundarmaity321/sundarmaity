@@ -154,41 +154,47 @@ document.addEventListener("DOMContentLoaded", function () {
 // typeEffect();
 
 // Js for submition success popup
+// Contact form -> Google Sheets + success popup
+// Js for submition success popup
+// Contact form -> Google Sheets + success popup
 document.addEventListener("DOMContentLoaded", function () {
   const contactForm = document.getElementById("contactForm");
   const popupOverlay = document.getElementById("popupOverlay");
   const closePopup = document.getElementById("closePopup");
 
-  // Form submission handler
+  const scriptURL =
+    "https://script.google.com/macros/s/AKfycbzXJ-9szbhsGx6RdL82pF1GQ28AleAfRLmOXZoR46GsnbMVC-8WI7cAIFi_8TnW4GqZlg/exec";
+
+  if (!contactForm) return;
+
   contactForm.addEventListener("submit", function (e) {
     e.preventDefault();
+    const formData = new FormData(contactForm);
 
-    // Get form values
-    const name = document.getElementById("name").value;
-    const email = document.getElementById("email").value;
-    const message = document.getElementById("message").value;
-
-    // Here you would typically send the form data to a server
-    // For this example, we'll just simulate a successful submission
-
-    // Show success popup
-    popupOverlay.classList.add("active");
-
-    // Reset form
-    contactForm.reset();
+    // ✅ Send the form data without expecting a JSON response
+    fetch(scriptURL, { method: "POST", body: formData, mode: "no-cors" })
+      .then(() => {
+        // ✅ Always show success popup after submission
+        popupOverlay.classList.add("active");
+        contactForm.reset();
+      })
+      .catch((err) => {
+        console.error("Fetch error:", err);
+        alert("Error submitting form. Please check your connection.");
+      });
   });
 
-  // Close popup when close button is clicked
-  closePopup.addEventListener("click", function () {
-    popupOverlay.classList.remove("active");
-  });
-
-  // Close popup when clicking outside the popup
-  popupOverlay.addEventListener("click", function (e) {
-    if (e.target === popupOverlay) {
-      popupOverlay.classList.remove("active");
-    }
-  });
+  // ✅ Popup close handlers
+  if (closePopup) {
+    closePopup.addEventListener("click", () =>
+      popupOverlay.classList.remove("active")
+    );
+  }
+  if (popupOverlay) {
+    popupOverlay.addEventListener("click", (e) => {
+      if (e.target === popupOverlay) popupOverlay.classList.remove("active");
+    });
+  }
 });
 
 // Help Center functionality
@@ -421,6 +427,7 @@ document.addEventListener("DOMContentLoaded", function () {
   buildHelpCenter(); // 1. Build the HTML
   attachAccordionListeners(); // 2. Attach listeners to the new HTML
 }); // End of DOMContentLoaded.
+//   Help Center END
 
 // js for blinker
 // const blinker = document.getElementById("blinker");
