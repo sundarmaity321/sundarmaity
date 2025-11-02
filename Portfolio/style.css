@@ -496,7 +496,7 @@ span #my-name {
   flex-wrap: wrap;
 }
 .card_w {
-  /* background: var(--card-bg-color); */
+  background: var(--card-bg-color);
   padding: 20px;
   border: 1px solid #eee;
   border-radius: 8px;
@@ -747,7 +747,7 @@ iframe {
   position: fixed;
   bottom: 30px;
   right: 20px;
-  top: 72%;
+  top: 68%;
   width: 52px;
   height: 52px;
   background-color: #007bff;
