@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TranslateApp</title>
+    <!-- <link rel="stylesheet" href="Translate.css" /> -->
+    <link rel="icon" href="TranslatorLogo.jpg" type="image/icon type" />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+      * {
+        margin: 0;
+        padding: 0;
+        font-family: "Poppins", sans-serif;
+      }
+      body {
+        background-color: #1b2127;
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .container {
+        width: 500px;
+        height: 600px;
+        /* background: linear-gradient(to top, #012e4d, #007ea7); */
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        box-shadow: 2px 2px 10px;
+        border-radius: 10px;
+        border: none;
+        backdrop-filter: blur(10px);
+      }
+      .Text {
+        width: 90%;
+        height: 260px;
+        margin-left: 28px;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        overflow: hidden;
+      }
+      #fromText {
+        width: 98%;
+        height: 175px;
+        margin-left: 3px;
+        margin-top: 10px;
+        color: whitesmoke;
+        background-color: #080800;
+        font-size: 19px;
+        padding: 20px;
+        box-sizing: border-box;
+        border: none;
+        border-radius: 20px;
+        backdrop-filter: blur(10px);
+        box-shadow: 0px 0px 20px #1b2127;
+      }
+      #toText {
+        width: 98%;
+        height: 175px;
+        margin-left: 3px;
+        margin-top: 10px;
+        color: whitesmoke;
+        background-color: #080808;
+        font-size: 19px;
+        padding: 20px;
+        box-sizing: border-box;
+        border: none;
+        border-radius: 20px;
+        backdrop-filter: blur(10px);
+        box-shadow: 0px 0px 20px #1b2127;
+      }
+      .selectArea {
+        width: 88%;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: #80969d;
+        margin-top: -65px;
+        margin-left: 33px;
+        border-radius: 10px;
+      }
+      .select1 {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        gap: 25px;
+        border-radius: 5px;
+        backdrop-filter: blur(10px);
+        margin-top: 1px;
+      }
+      .select2 {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        gap: 25px;
+        border-radius: 5px;
+        backdrop-filter: blur(10px);
+        margin-top: 1px;
+      }
+      #fselect {
+        padding: 10px 40px 10px 40px;
+        box-sizing: border-box;
+        font-size: 15px;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        margin-left: 100px;
+      }
+      #sselect {
+        padding: 10px 40px 10px 40px;
+        box-sizing: border-box;
+        font-size: 15px;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        margin-left: 100px;
+      }
+      #transfer {
+        width: 454px;
+        height: 50px;
+        background-color: #b7deec;
+        margin-top: 20px;
+        margin-left: 25px;
+        color: #000000;
+        font-size: 18px;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        border-radius: 25px;
+        backdrop-filter: blur(10px);
+      }
+      /* #transfer:hover{
+    background-color: ;
+    transition: 0.3s all;
+} */
+      .speaker {
+        cursor: pointer;
+        transition: 0.3s all;
+      }
+      .speaker:hover {
+        transform: scale(130%);
+      }
+      .copy {
+        cursor: pointer;
+        transition: 0.3s all;
+      }
+      .copy:hover {
+        transform: scale(130%);
+      }
+
+      /* Responsive */
+      @media (max-width: 600px) {
+        body {
+          height: auto; /* Allow body to grow */
+          min-height: 100vh;
+          padding: 20px 0; /* Add padding for small screens */
+        }
+
+        .container {
+          width: 95%; /* Make container fluid */
+          max-width: 500px; /* Keep max-width from original design */
+          height: auto; /* Let container height fit content */
+          flex-direction: column;
+          padding-bottom: 20px; /* Ensure spacing for button */
+        }
+
+        .Text {
+          width: 95%; /* Adjust width */
+          height: 230px; /* Slightly reduce height */
+          margin-left: auto; /* Center component */
+          margin-right: auto;
+        }
+
+        #fromText,
+        #toText {
+          width: 100%; /* Use full width of parent */
+          height: 150px; /* Slightly reduce height */
+          margin-left: 0;
+          margin-top: 10px;
+        }
+
+        .selectArea {
+          width: 90%; /* Adjust width */
+          margin-left: auto; /* Center component */
+          margin-right: auto;
+          margin-top: -65px; /* Keep the original overlap concept */
+        }
+
+        .select1,
+        .select2 {
+          gap: 15px; /* Reduce gap */
+          justify-content: center; /* Center the items */
+        }
+
+        #fselect,
+        #sselect {
+          margin-left: 0; /* Remove fixed margin */
+          padding: 10px 15px; /* Adjust padding */
+          font-size: 14px;
+          /* Flex properties will center it */
+        }
+
+        #transfer {
+          width: 90%; /* Make button fluid */
+          margin-left: auto; /* Center button */
+          margin-right: auto;
+          margin-top: 20px;
+          position: static; /* Ensure it's not fixed */
+        }
+
+        .speaker,
+        .copy {
+          /* Ensure icons are not oversized */
+          width: 24px;
+          height: 24px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- From Section -->
+      <div class="Text">
+        <textarea name="" id="fromText" placeholder="Enter Text"></textarea>
+      </div>
+      <div class="selectArea">
+        <div class="select1">
+          <select name="" id="fselect" title="Select language"></select>
+          <img src="speaker.svg" alt="" class="speaker" id="from" />
+          <img src="copy.svg" alt="" class="copy" id="from" />
+        </div>
+      </div>
+      <!-- To Section -->
+      <div class="Text">
+        <textarea name="" id="toText" placeholder="Translate"></textarea>
+      </div>
+      <div class="selectArea">
+        <div class="select2">
+          <select name="" id="sselect" title="Select language"></select>
+          <img src="speaker.svg" alt="" class="speaker" id="to" />
+          <img src="copy.svg" alt="" class="copy" id="to" />
+        </div>
+      </div>
+      <!-- Translate button -->
+      <button id="transfer">Translate</button>
+    </div>
+    <!-- <script src="countries.js"></script>
+    <script src="Translate.js"></script> -->
+    <script>
+      const selectTag = document.querySelectorAll("select");
+      const translateBtn = document.querySelector("#transfer");
+      const fromText = document.querySelector("#fromText");
+      const toText = document.querySelector("#toText");
+      const icons = document.querySelectorAll("img");
+      const countries = {
+        "am-ET": "Amharic",
+        "ar-SA": "Arabic",
+        "be-BY": "Bielarus",
+        "bem-ZM": "Bemba",
+        "bi-VU": "Bislama",
+        "bjs-BB": "Bajan",
+        "bn-IN": "Bengali",
+        "bo-CN": "Tibetan",
+        "br-FR": "Breton",
+        "bs-BA": "Bosnian",
+        "ca-ES": "Catalan",
+        "cop-EG": "Coptic",
+        "cs-CZ": "Czech",
+        "cy-GB": "Welsh",
+        "da-DK": "Danish",
+        "dz-BT": "Dzongkha",
+        "de-DE": "German",
+        "dv-MV": "Maldivian",
+        "el-GR": "Greek",
+        "en-GB": "English",
+        "es-ES": "Spanish",
+        "et-EE": "Estonian",
+        "eu-ES": "Basque",
+        "fa-IR": "Persian",
+        "fi-FI": "Finnish",
+        "fn-FNG": "Fanagalo",
+        "fo-FO": "Faroese",
+        "fr-FR": "French",
+        "gl-ES": "Galician",
+        "gu-IN": "Gujarati",
+        "ha-NE": "Hausa",
+        "he-IL": "Hebrew",
+        "hi-IN": "Hindi",
+        "hr-HR": "Croatian",
+        "hu-HU": "Hungarian",
+        "id-ID": "Indonesian",
+        "is-IS": "Icelandic",
+        "it-IT": "Italian",
+        "ja-JP": "Japanese",
+        "kk-KZ": "Kazakh",
+        "km-KM": "Khmer",
+        "kn-IN": "Kannada",
+        "ko-KR": "Korean",
+        "ku-TR": "Kurdish",
+        "ky-KG": "Kyrgyz",
+        "la-VA": "Latin",
+        "lo-LA": "Lao",
+        "lv-LV": "Latvian",
+        "men-SL": "Mende",
+        "mg-MG": "Malagasy",
+        "mi-NZ": "Maori",
+        "ms-MY": "Malay",
+        "mt-MT": "Maltese",
+        "my-MM": "Burmese",
+        "ne-NP": "Nepali",
+        "niu-NU": "Niuean",
+        "nl-NL": "Dutch",
+        "no-NO": "Norwegian",
+        "ny-MW": "Nyanja",
+        "ur-PK": "Pakistani",
+        "pau-PW": "Palauan",
+        "pa-IN": "Panjabi",
+        "ps-PK": "Pashto",
+        "pis-SB": "Pijin",
+        "pl-PL": "Polish",
+        "pt-PT": "Portuguese",
+        "rn-BI": "Kirundi",
+        "ro-RO": "Romanian",
+        "ru-RU": "Russian",
+        "sg-CF": "Sango",
+        "si-LK": "Sinhala",
+        "sk-SK": "Slovak",
+        "sm-WS": "Samoan",
+        "sn-ZW": "Shona",
+        "so-SO": "Somali",
+        "sq-AL": "Albanian",
+        "sr-RS": "Serbian",
+        "sv-SE": "Swedish",
+        "sw-SZ": "Swahili",
+        "ta-LK": "Tamil",
+        "te-IN": "Telugu",
+        "tet-TL": "Tetum",
+        "tg-TJ": "Tajik",
+        "th-TH": "Thai",
+        "ti-TI": "Tigrinya",
+        "tk-TM": "Turkmen",
+        "tl-PH": "Tagalog",
+        "tn-BW": "Tswana",
+        "to-TO": "Tongan",
+        "tr-TR": "Turkish",
+        "uk-UA": "Ukrainian",
+        "uz-UZ": "Uzbek",
+        "vi-VN": "Vietnamese",
+        "wo-SN": "Wolof",
+        "xh-ZA": "Xhosa",
+        "yi-YD": "Yiddish",
+        "zu-ZA": "Zulu",
+      };
+
+      selectTag.forEach((tag, id) => {
+        for (const countriesCode in countries) {
+          let selected;
+          if (id == 0 && countriesCode == "en-GB") {
+            selected = " selected";
+          } else if (id == 1 && countriesCode == "bn-IN") {
+            selected = " selected";
+          }
+          let option = ` <option value="${countriesCode}" ${selected}>${countries[countriesCode]}</option>`;
+          tag.insertAdjacentHTML("beforeend", option);
+        }
+      });
+
+      translateBtn.addEventListener("click", () => {
+        let Text = fromText.value,
+          translateFrom = selectTag[0].value,
+          translateTo = selectTag[1].value;
+
+        let apiURL = `https://api.mymemory.translated.net/get?q=${Text}!&langpair=${translateFrom}|${translateTo}`;
+
+        fetch(apiURL)
+          .then((res) => res.json())
+          .then((data) => {
+            toText.value = data.responseData.translatedText;
+          });
+      });
+
+      icons.forEach((icon) => {
+        icon.addEventListener("click", ({ target }) => {
+          if (target.classList.contains("copy")) {
+            if (target.id == "from") {
+              navigator.clipboard.writeText(fromText.value);
+            } else {
+              navigator.clipboard.writeText(toText.value);
+            }
+          } else {
+            let utterance;
+            if (target.id == "from") {
+              utterance = new SpeechSynthesisUtterance(fromText.value);
+              utterance.lang = selectTag[0].value;
+            } else {
+              utterance = new SpeechSynthesisUtterance(toText.value);
+              utterance.lang = selectTag[1].value;
+            }
+            speechSynthesis.speak(utterance);
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
