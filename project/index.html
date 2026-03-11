@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Project Portfolio</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Configure custom colors and font based on the new palette -->
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              // Base colors from the uploaded palette
+              "app-dark": "#05161A", // Darkest Background
+              "app-mid": "#072E33", // Card/Header Background
+              "accent-light": "#0F969C", // Primary Accent (Bright Teal)
+              "accent-mid": "#0C7075", // Secondary Accent (Medium Teal)
+              "text-highlight": "#6DA5C0", // Light Blue for main text/highlights
+              "tag-bg": "#294D61", // Middle Blue-Gray for tags
+            },
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      /* Apply smooth scrolling for internal links */
+      html {
+        scroll-behavior: smooth;
+      }
+      /* Custom styles for background and text */
+      body {
+        background-color: #05161a; /* Uses app-dark */
+        color: #f8fafc; /* Keep light text for general contrast */
+        font-family: "Inter", sans-serif;
+      }
+
+      .contact-right form {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        padding: 30px;
+      }
+
+      form input,
+      form textarea {
+        width: 100%;
+        padding: 15px;
+        border: none;
+        border-radius: 8px;
+        background: rgba(0, 0, 0, 0.1);
+        border: 1px solid var(--color-bg-alt);
+        color: var(--color-text);
+        font-size: 1rem;
+      }
+
+      form input:focus,
+      form textarea:focus {
+        outline: none;
+        border-color: var(--color-accent-light);
+        box-shadow: 0 0 10px var(--color-accent-light);
+      }
+
+      /* Keyframes for a subtle glow effect on the main title */
+      @keyframes subtleGlow {
+        /* Using the new accent-light color (#0F969C) for the glow */
+        0%,
+        100% {
+          text-shadow: 0 0 5px rgba(15, 150, 156, 0.4);
+        }
+        50% {
+          text-shadow: 0 0 15px rgba(15, 150, 156, 0.8),
+            0 0 25px rgba(15, 150, 156, 0.3);
+        }
+      }
+      .glow-title {
+        animation: subtleGlow 4s infinite alternate;
+      }
+    </style>
+  </head>
+  <body class="min-h-screen">
+    <!-- Header Section -->
+    <!-- Updated background to app-mid -->
+    <header class="bg-app-mid shadow-xl sticky top-0 z-10">
+      <div
+        class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center"
+      >
+        <!-- Updated text color to accent-light -->
+        <h1
+          class="text-3xl font-extrabold tracking-tight glow-title text-accent-light"
+        >
+          My Projects
+        </h1>
+        <nav>
+          <!-- Updated hover color to text-highlight -->
+          <a
+            href="#projects"
+            class="text-sm font-medium hover:text-text-highlight transition duration-300"
+            >View Grid</a
+          >
+        </nav>
+      </div>
+    </header>
+
+    <!-- Main Content - Project Grid -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12" id="projects">
+      <!-- Section Title -->
+      <!-- Updated text color to text-highlight -->
+      <h2 class="text-4xl font-bold mb-10 text-center text-text-highlight">
+        Featured Works
+      </h2>
+
+      <!-- Project Grid Container -->
+      <div
+        class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3"
+      >
+        <!-- Card 1: E-commerce Platform -->
+        <!-- Background updated to app-mid, Border updated to accent-light -->
+        <div
+          class="project-card bg-app-mid rounded-xl p-6 shadow-lg border-t-4 border-accent-light transition-all duration-500 transform hover:scale-[1.02] hover:shadow-3xl hover:shadow-accent-light/40 cursor-pointer"
+        >
+          <div class="flex justify-between items-start mb-4">
+            <!-- Text updated to accent-light -->
+            <h3 class="text-2xl font-semibold text-accent-light">
+              E-commerce Platform
+            </h3>
+            <!-- Icon color updated to accent-mid -->
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="text-accent-mid"
+            >
+              <circle cx="9" cy="21" r="1"></circle>
+              <circle cx="20" cy="21" r="1"></circle>
+              <path
+                d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"
+              ></path>
+            </svg>
+          </div>
+          <!-- Description text updated to text-highlight -->
+          <p class="text-text-highlight mb-6 text-sm">
+            A fully-featured microservices-based e-commerce solution with
+            integrated payment processing and user authentication. Built for
+            high scalability.
+          </p>
+          <!-- Tech tags updated with tag-bg and text-highlight -->
+          <div class="flex flex-wrap gap-2 mb-6">
+            <span
+              class="text-xs font-medium px-3 py-1 bg-tag-bg text-text-highlight rounded-full"
+              >React</span
+            >
+            <span
+              class="text-xs font-medium px-3 py-1 bg-tag-bg text-text-highlight rounded-full"
+              >Node.js</span
+            >
+            <span
+              class="text-xs font-medium px-3 py-1 bg-tag-bg text-text-highlight rounded-full"
+              >MongoDB</span
+            >
+          </div>
+          <!-- Button updated to bg-accent-light and dark text (app-dark) -->
+          <button
+            class="w-full bg-accent-light text-app-dark font-bold py-2 rounded-lg hover:bg-accent-light/80 transition duration-300 shadow-md"
+          >
+            View Case Study
+          </button>
+        </div>
+
+        <!-- Card 2: Real-time Chat App -->
+        <!-- Background updated to app-mid, Border updated to accent-mid -->
+        <div
+          class="project-card bg-app-mid rounded-xl p-6 shadow-lg border-t-4 border-accent-mid transition-all duration-500 transform hover:scale-[1.02] hover:shadow-3xl hover:shadow-accent-mid/40 cursor-pointer"
+        >
+          <div class="flex justify-between items-start mb-4">
+            <!-- Text updated to accent-mid -->
+            <h3 class="text-2xl font-semibold text-accent-mid">
+              Real-time Chat App
+            </h3>
+            <!-- Icon color updated to accent-light -->
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="text-accent-light"
+            >
+              <path
+                d="M7.9 20A9 9 0 0 0 16 15V4a2 2 0 0 0-2-2L4 3a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h2.5L7 20z"
+              ></path>
+            </svg>
+          </div>
+          <!-- Description text updated to text-highlight -->
+          <p class="text-text-highlight mb-6 text-sm">
+            A responsive web application enabling instant, group-based
+            communication using WebSockets for low-latency message delivery.
+          </p>
+          <!-- Tech tags updated with tag-bg and text-highlight -->
+          <div class="flex flex-wrap gap-2 mb-6">
+            <span
+              class="text-xs font-medium px-3 py-1 bg-tag-bg text-text-highlight rounded-full"
+              >Vue.js</span
+            >
+            <span
+              class="text-xs font-medium px-3 py-1 bg-tag-bg text-text-highlight rounded-full"
+              >Socket.io</span
+            >
+            <span
+              class="text-xs font-medium px-3 py-1 bg-tag-bg text-text-highlight rounded-full"
+              >PostgreSQL</span
+            >
+          </div>
+          <!-- Button updated to bg-accent-mid and dark text (app-dark) -->
+          <button
+            class="w-full bg-accent-mid text-app-dark font-bold py-2 rounded-lg hover:bg-accent-mid/80 transition duration-300 shadow-md"
+          >
+            Live Demo
+          </button>
+        </div>
+
+        <!-- Card 3: Data Visualization Dashboard -->
+        <!-- Background updated to app-mid, Border updated to accent-light -->
+        <div
+          class="project-card bg-app-mid rounded-xl p-6 shadow-lg border-t-4 border-accent-light transition-all duration-500 transform hover:scale-[1.02] hover:shadow-3xl hover:shadow-accent-light/40 cursor-pointer"
+        >
+          <div class="flex justify-between items-start mb-4">
+            <!-- Text updated to accent-light -->
+            <h3 class="text-2xl font-semibold text-accent-light">
+              Analytics Dashboard
+            </h3>
+            <!-- Icon color updated to accent-mid -->
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="text-accent-mid"
+            >
+              <line x1="12" y1="20" x2="12" y2="10"></line>
+              <line x1="18" y1="20" x2="18" y2="4"></line>
+              <line x1="6" y1="20" x2="6" y2="16"></line>
+              <line x1="3" y1="20" x2="21" y2="20"></line>
+            </svg>
+          </div>
+          <!-- Description text updated to text-highlight -->
+          <p class="text-text-highlight mb-6 text-sm">
+            A dynamic dashboard featuring D3.js charts for visualizing
+            large-scale operational data, optimized for performance and clarity.
+          </p>
+          <!-- Tech tags updated with tag-bg and text-highlight -->
+          <div class="flex flex-wrap gap-2 mb-6">
+            <span
+              class="text-xs font-medium px-3 py-1 bg-tag-bg text-text-highlight rounded-full"
+              >Angular</span
+            >
+            <span
+              class="text-xs font-medium px-3 py-1 bg-tag-bg text-text-highlight rounded-full"
+              >D3.js</span
+            >
+            <span
+              class="text-xs font-medium px-3 py-1 bg-tag-bg text-text-highlight rounded-full"
+              >TypeScript</span
+            >
+          </div>
+          <!-- Button updated to bg-accent-light and dark text (app-dark) -->
+          <button
+            class="w-full bg-accent-light text-app-dark font-bold py-2 rounded-lg hover:bg-accent-light/80 transition duration-300 shadow-md"
+          >
+            Explore Visuals
+          </button>
+        </div>
+
+        <!-- Card 4: Mobile Game Concept -->
+        <!-- Background updated to app-mid, Border updated to accent-mid -->
+        <div
+          class="project-card bg-app-mid rounded-xl p-6 shadow-lg border-t-4 border-accent-mid transition-all duration-500 transform hover:scale-[1.02] hover:shadow-3xl hover:shadow-accent-mid/40 cursor-pointer"
+        >
+          <div class="flex justify-between items-start mb-4">
+            <!-- Text updated to accent-mid -->
+            <h3 class="text-2xl font-semibold text-accent-mid">
+              Mobile Game Concept
+            </h3>
+            <!-- Icon color updated to accent-light -->
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="text-accent-light"
+            >
+              <path
+                d="M6 10c0 2.21 1.79 4 4 4h4c2.21 0 4-1.79 4-4v-1c0-2.21-1.79-4-4-4H9c-2.21 0-4 1.79-4 4v1z"
+              ></path>
+              <path
+                d="M12 21h4c1.66 0 3-1.34 3-3v-4h-2.5l-2 2-2-2H5v4c0 1.66 1.34 3 3 3h4z"
+              ></path>
+            </svg>
+          </div>
+          <!-- Description text updated to text-highlight -->
+          <p class="text-text-highlight mb-6 text-sm">
+            A proof-of-concept for a 2D puzzle-platformer, showcasing custom
+            physics, animation pipelines, and level design.
+          </p>
+          <!-- Tech tags updated with tag-bg and text-highlight -->
+          <div class="flex flex-wrap gap-2 mb-6">
+            <span
+              class="text-xs font-medium px-3 py-1 bg-tag-bg text-text-highlight rounded-full"
+              >Unity</span
+            >
+            <span
+              class="text-xs font-medium px-3 py-1 bg-tag-bg text-text-highlight rounded-full"
+              >C#</span
+            >
+            <span
+              class="text-xs font-medium px-3 py-1 bg-tag-bg text-text-highlight rounded-full"
+              >Aseprite</span
+            >
+          </div>
+          <!-- Button updated to bg-accent-mid and dark text (app-dark) -->
+          <button
+            class="w-full bg-accent-mid text-app-dark font-bold py-2 rounded-lg hover:bg-accent-mid/80 transition duration-300 shadow-md"
+          >
+            See Assets
+          </button>
+        </div>
+
+        <!-- Card 5: AI-Powered Text Summarizer -->
+        <!-- Background updated to app-mid, Border updated to accent-light -->
+        <div
+          class="project-card bg-app-mid rounded-xl p-6 shadow-lg border-t-4 border-accent-light transition-all duration-500 transform hover:scale-[1.02] hover:shadow-3xl hover:shadow-accent-light/40 cursor-pointer"
+        >
+          <div class="flex justify-between items-start mb-4">
+            <!-- Text updated to accent-light -->
+            <h3 class="text-2xl font-semibold text-accent-light">
+              Text Summarizer
+            </h3>
+            <!-- Icon color updated to accent-mid -->
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="text-accent-mid"
+            >
+              <path
+                d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"
+              ></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <line x1="16" y1="13" x2="8" y2="13"></line>
+              <line x1="16" y1="17" x2="8" y2="17"></line>
+              <line x1="10" y1="9" x2="8" y2="9"></line>
+            </svg>
+          </div>
+          <!-- Description text updated to text-highlight -->
+          <p class="text-text-highlight mb-6 text-sm">
+            A web service utilizing a transformer model (Gemini API) to condense
+            long articles into key bullet points or a short paragraph summary.
+          </p>
+          <!-- Tech tags updated with tag-bg and text-highlight -->
+          <div class="flex flex-wrap gap-2 mb-6">
+            <span
+              class="text-xs font-medium px-3 py-1 bg-tag-bg text-text-highlight rounded-full"
+              >Python</span
+            >
+            <span
+              class="text-xs font-medium px-3 py-1 bg-tag-bg text-text-highlight rounded-full"
+              >Gemini API</span
+            >
+            <span
+              class="text-xs font-medium px-3 py-1 bg-tag-bg text-text-highlight rounded-full"
+              >Flask</span
+            >
+          </div>
+          <!-- Button updated to bg-accent-light and dark text (app-dark) -->
+          <button
+            class="w-full bg-accent-light text-app-dark font-bold py-2 rounded-lg hover:bg-accent-light/80 transition duration-300 shadow-md"
+          >
+            Try Tool
+          </button>
+        </div>
+
+        <!-- Card 6: Blockchain Explorer -->
+        <!-- Background updated to app-mid, Border updated to accent-mid -->
+        <div
+          class="project-card bg-app-mid rounded-xl p-6 shadow-lg border-t-4 border-accent-mid transition-all duration-500 transform hover:scale-[1.02] hover:shadow-3xl hover:shadow-accent-mid/40 cursor-pointer"
+        >
+          <div class="flex justify-between items-start mb-4">
+            <!-- Text updated to accent-mid -->
+            <h3 class="text-2xl font-semibold text-accent-mid">
+              Blockchain Explorer
+            </h3>
+            <!-- Icon color updated to accent-light -->
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="text-accent-light"
+            >
+              <polygon
+                points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"
+              ></polygon>
+            </svg>
+          </div>
+          <!-- Description text updated to text-highlight -->
+          <p class="text-text-highlight mb-6 text-sm">
+            A lightweight web interface for monitoring real-time transactions
+            and blocks on a custom proof-of-stake blockchain network.
+          </p>
+          <!-- Tech tags updated with tag-bg and text-highlight -->
+          <div class="flex flex-wrap gap-2 mb-6">
+            <span
+              class="text-xs font-medium px-3 py-1 bg-tag-bg text-text-highlight rounded-full"
+              >Solidity</span
+            >
+            <span
+              class="text-xs font-medium px-3 py-1 bg-tag-bg text-text-highlight rounded-full"
+              >Web3.js</span
+            >
+            <span
+              class="text-xs font-medium px-3 py-1 bg-tag-bg text-text-highlight rounded-full"
+              >Rust</span
+            >
+          </div>
+          <!-- Button updated to bg-accent-mid and dark text (app-dark) -->
+          <button
+            class="w-full bg-accent-mid text-app-dark font-bold py-2 rounded-lg hover:bg-accent-mid/80 transition duration-300 shadow-md"
+          >
+            View Network
+          </button>
+        </div>
+      </div>
+      <!-- End of Grid -->
+    </main>
+
+    <!-- Footer -->
+    <!-- Updated background to app-mid -->
+    <footer class="bg-app-mid mt-12 py-6">
+      <div
+        class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm text-text-highlight"
+      >
+        &copy; 2023 My Portfolio. All rights reserved. |
+        <a
+          class="hover:text-accent-light transition duration-300 cursor-pointer"
+          id="contactLink"
+          >Contact Me</a
+        >
+      </div>
+    </footer>
+
+    <!-- Contact Modal Structure -->
+    <div
+      id="contactModal"
+      class="fixed inset-0 bg-app-dark bg-opacity-90 z-50 hidden transition-opacity duration-300 flex items-center justify-center p-4"
+    >
+      <!-- Modal Content Container -->
+      <div
+        class="bg-app-mid rounded-xl p-8 w-full max-w-md shadow-2xl relative border border-accent-mid transform transition-transform duration-300 scale-95"
+        id="modalContent"
+      >
+        <!-- Close Button -->
+        <button
+          class="absolute top-4 right-4 text-text-highlight hover:text-accent-light transition"
+          onclick="closeContactModal()"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+
+        <h3 class="text-3xl font-bold mb-6 text-accent-light">Get in Touch</h3>
+
+        <div class="contact-right">
+          <form id="contact-form" class="glass">
+            <input type="text" name="name" placeholder="Your Name" required />
+            <input
+              type="email"
+              name="email"
+              placeholder="Your Email"
+              required
+            />
+            <input
+              type="tel"
+              name="phone"
+              placeholder="Phone Number (Optional)"
+            />
+            <textarea
+              name="message"
+              rows="6"
+              placeholder="Your Message"
+              required
+            ></textarea>
+            <button type="submit" class="btn">Send Your Message</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- End Contact Modal Structure -->
+
+    <script>
+      // Store initial form HTML to reset after mock submission
+      const initialFormHTML = document.getElementById("contactForm")
+        ? document.getElementById("contactForm").innerHTML
+        : "";
+
+      // Function to open the modal
+      function openContactModal() {
+        const modal = document.getElementById("contactModal");
+        modal.classList.remove("hidden");
+        // Add scale-100 class for animation
+        document.getElementById("modalContent").classList.remove("scale-95");
+        document.getElementById("modalContent").classList.add("scale-100");
+        document.body.style.overflow = "hidden"; // Prevent scrolling the body
+      }
+
+      // Function to close the modal
+      function closeContactModal() {
+        const modal = document.getElementById("contactModal");
+        // Add scale-95 class for animation
+        document.getElementById("modalContent").classList.remove("scale-100");
+        document.getElementById("modalContent").classList.add("scale-95");
+
+        // Wait for transition before hiding completely
+        setTimeout(() => {
+          modal.classList.add("hidden");
+          document.body.style.overflow = ""; // Restore scrolling
+        }, 300);
+
+        // Reset the form in case a success message is showing
+        const contactForm = document.getElementById("contactForm");
+        if (contactForm && contactForm.innerHTML !== initialFormHTML) {
+          contactForm.innerHTML = initialFormHTML;
+        }
+      }
+
+      // Setup event listeners once the DOM is loaded
+      document.addEventListener("DOMContentLoaded", () => {
+        const contactLink = document.getElementById("contactLink");
+        const contactModal = document.getElementById("contactModal");
+        const contactForm = document.getElementById("contactForm");
+
+        // 1. Open Modal on 'Contact Me' link click
+        if (contactLink) {
+          contactLink.addEventListener("click", (e) => {
+            e.preventDefault();
+            openContactModal();
+          });
+        }
+
+        // 2. Close Modal on backdrop click
+        if (contactModal) {
+          contactModal.addEventListener("click", (e) => {
+            // Check if the click occurred directly on the modal backdrop, not the content
+            if (e.target === contactModal) {
+              closeContactModal();
+            }
+          });
+        }
+
+        // Contact Form Handler
+        const scriptURL =
+          "https://script.google.com/macros/s/AKfycbz1vfLDXFH5T8Z__W6oyc1FIus-4lBmh2fOHGlJyGFEfUjjVNJl9csU6MTaO6FzyCTl/exec";
+        const form = document.getElementById("contact-form");
+
+        form.addEventListener("submit", (e) => {
+          e.preventDefault();
+          const btn = form.querySelector("button[type='submit']");
+          btn.disabled = true;
+          btn.textContent = "Sending...";
+
+          fetch(scriptURL, { method: "POST", body: new FormData(form) })
+            .then((response) => response.json())
+            .then((result) => {
+              btn.textContent = "Send Your Message";
+              btn.disabled = false;
+              alert("✅ Message sent successfully!");
+              form.reset();
+            })
+            .catch((error) => {
+              btn.textContent = "Send Your Message";
+              btn.disabled = false;
+              alert("❌ Error: " + error.message);
+            });
+        });
+      });
+    </script>
+  </body>
+</html>
