@@ -374,8 +374,8 @@
       }
 
       .home-img .img-container {
-        width: 380px;
-        height: 385px;
+        width: 300px;
+        height: 300px;
         border-radius: 50%;
         overflow: hidden;
         border: 5px solid var(--color-bg-alt);
@@ -564,7 +564,7 @@
 
       .skill-btn i {
         font-size: 1.15rem;
-        /* color: var(--color-accent-medium); */
+        color: var(--color-accent-medium);
         filter: drop-shadow(0 0 4px var(--color-accent-medium));
       }
 
@@ -1053,6 +1053,103 @@
           cursor: auto;
         }
       }
+
+      /* ======== Animated Copyright Footer ======== */
+      .copyright-footer {
+        text-align: center;
+        padding: 24px 8%;
+        font-size: 0.9rem;
+        color: var(--color-text);
+        opacity: 0.7;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .copyright-footer .wave-text {
+        display: inline;
+      }
+
+      .copyright-footer .wave-char {
+        display: inline-block;
+        animation: wave 2.5s ease-in-out infinite;
+      }
+
+      .copyright-footer .wave-char.space {
+        width: 0.3em;
+      }
+
+      .copyright-footer .heart {
+        color: #e25555;
+        display: inline-block;
+        animation: heartbeat 1.2s ease-in-out infinite;
+        font-size: 1.1rem;
+      }
+
+      .copyright-footer .name-link {
+        color: var(--color-accent-medium);
+        text-decoration: none;
+        font-weight: 600;
+        transition: color 0.3s ease;
+      }
+
+      .copyright-footer .name-link:hover {
+        color: var(--color-highlight);
+      }
+
+      .copyright-footer::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--color-accent-medium),
+          transparent
+        );
+        background-size: 200% 100%;
+        animation: shimmerLine 3s ease-in-out infinite;
+      }
+
+      @keyframes wave {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-5px);
+        }
+      }
+
+      @keyframes heartbeat {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+        15% {
+          transform: scale(1.25);
+        }
+        30% {
+          transform: scale(1);
+        }
+        45% {
+          transform: scale(1.2);
+        }
+        60% {
+          transform: scale(1);
+        }
+      }
+
+      @keyframes shimmerLine {
+        0% {
+          background-position: -200% 0;
+        }
+        100% {
+          background-position: 200% 0;
+        }
+      }
     </style>
   </head>
   <body>
@@ -1179,6 +1276,21 @@
                   <i class="fa-brands fa-js"></i> JavaScript
                 </div>
                 <div class="skill-btn">
+                  <i class="fa-brands fa-php"></i> PHP (Laravel)
+                </div>
+                <div class="skill-btn">
+                  <i class="fa-solid fa-palette"></i> UI/UX
+                </div>
+                <div class="skill-btn">
+                  <i class="fa-solid fa-chart-line"></i> Power BI
+                </div>
+                <div class="skill-btn">
+                  <i class="fa-brands fa-git-alt"></i> Git
+                </div>
+                <div class="skill-btn">
+                  <i class="fa-solid fa-database"></i> MySQL
+                </div>
+                <div class="skill-btn">
                   <i class="fa-brands fa-angular"></i> Angular.js
                 </div>
                 <div class="skill-btn">
@@ -1188,28 +1300,20 @@
                   <i class="fa-brands fa-css3"></i> Tailwind CSS
                 </div>
                 <div class="skill-btn">
-                  <i class="fa-brands fa-php"></i> PHP (Laravel)
-                </div>
-                <div class="skill-btn">
-                  <i class="fa-solid fa-database"></i> MySQL
-                </div>
-                <div class="skill-btn">
-                  <i class="fa-solid fa-database"></i> PostgreSQL
-                </div>
-                <div class="skill-btn">
                   <i class="fa-solid fa-code"></i> C Programming
                 </div>
                 <div class="skill-btn">
                   <i class="fa-brands fa-python"></i> Python
                 </div>
                 <div class="skill-btn">
-                  <i class="fa-solid fa-palette"></i> UI/UX
+                  <i class="fa-solid fa-database"></i> PostgreSQL
                 </div>
                 <div class="skill-btn">
-                  <i class="fa-brands fa-git-alt"></i> Git
+                  <i class="fa-solid fa-mobile-screen-button"></i> Responsive
+                  Web Design
                 </div>
                 <div class="skill-btn">
-                  <i class="fa-solid fa-chart-line"></i> Power BI
+                  <i class="fa-solid fa-wand-magic-sparkles"></i> Vibe Coding
                 </div>
               </div>
             </div>
@@ -1294,7 +1398,7 @@
         <div class="projects-grid">
           <div class="project-card glass">
             <img
-              src="/img/focus-flow.png"
+              src="..//img/focus-flow.png"
               alt="Focus Flow"
               title="https://focusflow.online/"
             />
@@ -1460,6 +1564,14 @@
       </section>
     </main>
 
+    <footer class="copyright-footer">
+      <span class="wave-text" data-wave
+        >© <span id="copyright-year"></span> Made with </span
+      ><span class="heart">❤</span><span class="wave-text" data-wave> by </span
+      ><a href="#home" class="name-link" data-wave>Sundar Maity</a
+      ><span class="wave-text" data-wave>. All rights reserved.</span>
+    </footer>
+
     <div id="popup-overlay"></div>
 
     <div id="download-popup" class="popup glass">
@@ -1489,6 +1601,26 @@
       cursorSpotlight.style.left = `${e.clientX}px`;
       cursorSpotlight.style.top = `${e.clientY}px`;
     });
+
+    // ======== Dynamic Copyright Year ========
+    document.getElementById("copyright-year").textContent =
+      new Date().getFullYear();
+
+    // ======== Copyright Wave Animation ========
+    let charIndex = 0;
+    document.querySelectorAll("[data-wave]").forEach((el) => {
+      const text = el.textContent;
+      el.textContent = "";
+      [...text].forEach((char) => {
+        const span = document.createElement("span");
+        span.className = "wave-char" + (char === " " ? " space" : "");
+        span.textContent = char === " " ? "\u00A0" : char;
+        span.style.animationDelay = `${charIndex * 0.05}s`;
+        el.appendChild(span);
+        charIndex++;
+      });
+    });
+
     // ======== Section Scroll Animation ========
     const sections = document.querySelectorAll("section");
     const observerOptions = {
@@ -1720,16 +1852,3 @@
       });
   });
 </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
