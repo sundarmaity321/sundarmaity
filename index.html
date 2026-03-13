@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sundar Maity</title>
+    <title>Sundar Maity | Portfolio</title>
     <link rel="icon" type="image/png" href="/img/Logo.gif" />
     <link
       rel="stylesheet"
@@ -20,7 +20,7 @@
         --color-bg-dark: #072e33;
         --color-bg-medium: #3f888b;
         --color-accent-medium: #0f969c;
-        --color-accent-light: #008d7a;
+        --color-accent-light: #07dbbf;
         --color-bg-alt: #294d61;
 
         /* Text and Glass */
@@ -30,6 +30,11 @@
         --glass-bg: rgba(41, 77, 97, 0.15);
         --glass-border: 1px solid rgba(109, 165, 192, 0.2);
         --blur: 10px;
+
+        /* Grid Overlay */
+        --grid-line: rgba(255, 255, 255, 0.14);
+        --grid-size: 42px;
+        --grid-line-width: 1px;
 
         /* Glow Effect */
         --glow-color: var(--color-accent-medium);
@@ -41,7 +46,7 @@
         --color-bg-dark: #e0f0ff;
         --color-bg-medium: #b0d9f7;
         --color-accent-medium: #0f969c;
-        --color-accent-light: #0c7075;
+        --color-accent-light: #066469;
         --color-bg-alt: #6da5c0;
 
         --color-text: #05161a;
@@ -52,6 +57,8 @@
         --glass-border: 1px solid rgba(0, 0, 0, 0.1);
         --blur: 10px;
         --glow-color: var(--color-accent-light);
+
+        --grid-line: rgba(5, 22, 26, 0.16);
       }
 
       /* ======== General Styles ======== */
@@ -75,7 +82,7 @@
         overflow-x: hidden;
       }
 
-      /* Background Animated Gradient */
+      /* Background Static Gradient */
       body::before {
         content: "";
         position: fixed;
@@ -83,29 +90,43 @@
         left: 0;
         width: 100%;
         height: 100%;
-        z-index: -1;
+        z-index: -2;
         background: linear-gradient(
-          -45deg,
+          135deg,
           var(--color-bg-dark),
-          var(--color-bg-darkest),
           var(--color-bg-alt),
           var(--color-bg-medium)
         );
-        background-size: 400% 400%;
-        animation: gradientBG 25s ease infinite;
+        background-size: cover;
         transition: background 0.3s ease;
       }
 
-      @keyframes gradientBG {
-        0% {
-          background-position: 0% 50%;
-        }
-        50% {
-          background-position: 100% 50%;
-        }
-        100% {
-          background-position: 0% 50%;
-        }
+      /* Cubes-style grid overlay */
+      body::after {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        pointer-events: none;
+        background-image:
+          repeating-linear-gradient(
+            0deg,
+            var(--grid-line) 0,
+            var(--grid-line) var(--grid-line-width),
+            transparent var(--grid-line-width),
+            transparent var(--grid-size)
+          ),
+          repeating-linear-gradient(
+            90deg,
+            var(--grid-line) 0,
+            var(--grid-line) var(--grid-line-width),
+            transparent var(--grid-line-width),
+            transparent var(--grid-size)
+          );
+        opacity: 0.38;
       }
 
       section {
@@ -374,8 +395,8 @@
       }
 
       .home-img .img-container {
-        width: 380px;
-        height: 385px;
+        width: 390px;
+        height: 400px;
         border-radius: 50%;
         overflow: hidden;
         border: 5px solid var(--color-bg-alt);
@@ -522,7 +543,7 @@
         font-size: 0.95rem;
         font-weight: 600;
         color: var(--color-text);
-        cursor: default;
+        cursor: pointer;
         background: linear-gradient(
           145deg,
           rgba(15, 150, 156, 0.35),
@@ -847,6 +868,35 @@
         margin-bottom: 25px;
       }
 
+      #skill-popup {
+        max-width: 360px;
+        padding: 26px;
+      }
+
+      #skill-popup h3 {
+        font-size: 1.4rem;
+      }
+
+      #skill-popup .popup-hint {
+        font-size: 0.9rem;
+        opacity: 0.85;
+        margin-bottom: 12px;
+      }
+
+      #skill-popup .popup-description {
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        margin-bottom: 0;
+        transition: all 0.25s ease;
+      }
+
+      #skill-popup .popup-description.show {
+        max-height: 220px;
+        opacity: 1;
+        margin-bottom: 16px;
+      }
+
       /* Show Popup */
       #popup-overlay.show {
         display: block;
@@ -860,24 +910,23 @@
       /* ======== Spotlight Cursor Follow ======== */
       .cursor-spotlight {
         position: fixed;
-        top: 0;
-        left: 0;
         width: 350px;
         height: 350px;
         border-radius: 50%;
         background: radial-gradient(
           circle,
-          rgba(15, 150, 156, 0.12) 0%,
-          rgba(15, 150, 156, 0.06) 30%,
-          rgba(15, 150, 156, 0.02) 55%,
+          rgba(15, 150, 156, 0.19) 0%,
+          rgba(15, 150, 156, 0.11) 33%,
+          rgba(15, 150, 156, 0.03) 58%,
           transparent 75%
         );
         pointer-events: none;
         z-index: 9990;
-        transform: translate(-50%, -50%);
+        transform: translate3d(-50%, -50%, 0);
         transition: opacity 0.3s ease;
         mix-blend-mode: screen;
         filter: blur(2px);
+        will-change: transform;
       }
 
       body.light-theme .cursor-spotlight {
@@ -1150,6 +1199,164 @@
           background-position: 200% 0;
         }
       }
+
+      /* ======== Help Center ======== */
+      .help-btn {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        background: var(--color-accent-medium);
+        color: var(--color-text-dark);
+        border: none;
+        font-size: 1.4rem;
+        cursor: pointer;
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        transition: all 0.3s ease;
+      }
+
+      .help-btn:hover {
+        background: var(--color-accent-light);
+        transform: scale(1.1);
+        box-shadow: 0 6px 25px rgba(0, 0, 0, 0.4);
+      }
+
+      .help-btn.active i::before {
+        content: "\f00d";
+      }
+
+      .help-popup {
+        position: fixed;
+        bottom: 100px;
+        right: 30px;
+        width: 370px;
+        max-height: 500px;
+        border-radius: 16px;
+        z-index: 1000;
+        display: none;
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        overflow: hidden;
+        flex-direction: column;
+      }
+
+      .help-popup.show {
+        display: flex;
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+
+      .help-popup-header {
+        padding: 20px 24px;
+        border-bottom: 1px solid rgba(109, 165, 192, 0.15);
+      }
+
+      .help-popup-header h3 {
+        font-size: 1.2rem;
+        color: var(--color-highlight);
+        margin: 0;
+      }
+
+      .help-popup-header p {
+        font-size: 0.8rem;
+        opacity: 0.7;
+        margin: 4px 0 0;
+      }
+
+      .help-popup-body {
+        padding: 16px;
+        overflow-y: auto;
+        max-height: 400px;
+        scrollbar-width: thin;
+        scrollbar-color: var(--color-accent-medium) transparent;
+      }
+
+      .faq-item {
+        border-radius: 10px;
+        margin-bottom: 8px;
+        overflow: hidden;
+        border: 1px solid rgba(109, 165, 192, 0.1);
+        transition: border-color 0.3s ease;
+      }
+
+      .faq-item:hover {
+        border-color: rgba(15, 150, 156, 0.3);
+      }
+
+      .faq-question {
+        width: 100%;
+        padding: 14px 16px;
+        background: transparent;
+        border: none;
+        color: var(--color-text);
+        font-family: "Poppins", sans-serif;
+        font-size: 0.88rem;
+        font-weight: 500;
+        text-align: left;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        transition: background 0.3s ease;
+      }
+
+      .faq-question:hover {
+        background: rgba(15, 150, 156, 0.08);
+      }
+
+      .faq-question i {
+        font-size: 0.75rem;
+        transition: transform 0.3s ease;
+        color: var(--color-accent-medium);
+        flex-shrink: 0;
+      }
+
+      .faq-item.active .faq-question i {
+        transform: rotate(180deg);
+      }
+
+      .faq-answer {
+        max-height: 0;
+        overflow: hidden;
+        transition:
+          max-height 0.35s ease,
+          padding 0.35s ease;
+        padding: 0 16px;
+        font-size: 0.82rem;
+        line-height: 1.6;
+        opacity: 0.8;
+      }
+
+      .faq-item.active .faq-answer {
+        max-height: 200px;
+        padding: 0 16px 14px;
+      }
+
+      @media (max-width: 768px) {
+        .help-btn {
+          bottom: 100px;
+          right: 15px;
+          width: 48px;
+          height: 48px;
+          font-size: 1.2rem;
+        }
+
+        .help-popup {
+          right: 10px;
+          left: 10px;
+          bottom: 160px;
+          width: auto;
+          max-height: 60vh;
+        }
+      }
     </style>
   </head>
   <body>
@@ -1228,7 +1435,7 @@
           </div>
           <div class="home-img">
             <div class="img-container">
-              <img src="..//img/myphoto.png" alt="My Photo" />
+              <img src="/img/myphoto.png" alt="My Photo" />
             </div>
           </div>
         </div>
@@ -1238,7 +1445,7 @@
         <h2 class="section-title">About <span class="highlight">Me</span></h2>
         <div class="about-container">
           <div class="about-img">
-            <img src="myphoto 2.png" alt="About Me Photo" />
+            <img src="/img/myphoto 2.png" alt="About Me Photo" />
           </div>
           <div class="about-content">
             <p>
@@ -1266,53 +1473,53 @@
 
             <div class="tab-content active" id="skills">
               <div class="skills-cloud">
-                <div class="skill-btn">
+                <div class="skill-btn" data-skill="HTML">
                   <i class="fa-brands fa-html5"></i> HTML
                 </div>
-                <div class="skill-btn">
+                <div class="skill-btn" data-skill="CSS">
                   <i class="fa-brands fa-css3-alt"></i> CSS
                 </div>
-                <div class="skill-btn">
+                <div class="skill-btn" data-skill="JavaScript">
                   <i class="fa-brands fa-js"></i> JavaScript
                 </div>
-                <div class="skill-btn">
+                <div class="skill-btn" data-skill="PHP (Laravel)">
                   <i class="fa-brands fa-php"></i> PHP (Laravel)
                 </div>
-                <div class="skill-btn">
+                <div class="skill-btn" data-skill="UI/UX">
                   <i class="fa-solid fa-palette"></i> UI/UX
                 </div>
-                <div class="skill-btn">
+                <div class="skill-btn" data-skill="Power BI">
                   <i class="fa-solid fa-chart-line"></i> Power BI
                 </div>
-                <div class="skill-btn">
+                <div class="skill-btn" data-skill="Git">
                   <i class="fa-brands fa-git-alt"></i> Git
                 </div>
-                <div class="skill-btn">
+                <div class="skill-btn" data-skill="MySQL">
                   <i class="fa-solid fa-database"></i> MySQL
                 </div>
-                <div class="skill-btn">
+                <div class="skill-btn" data-skill="Angular.js">
                   <i class="fa-brands fa-angular"></i> Angular.js
                 </div>
-                <div class="skill-btn">
+                <div class="skill-btn" data-skill="React.js">
                   <i class="fa-brands fa-react"></i> React.js
                 </div>
-                <div class="skill-btn">
+                <div class="skill-btn" data-skill="Tailwind CSS">
                   <i class="fa-brands fa-css3"></i> Tailwind CSS
                 </div>
-                <div class="skill-btn">
+                <div class="skill-btn" data-skill="C Programming">
                   <i class="fa-solid fa-code"></i> C Programming
                 </div>
-                <div class="skill-btn">
+                <div class="skill-btn" data-skill="Python">
                   <i class="fa-brands fa-python"></i> Python
                 </div>
-                <div class="skill-btn">
+                <div class="skill-btn" data-skill="PostgreSQL">
                   <i class="fa-solid fa-database"></i> PostgreSQL
                 </div>
-                <div class="skill-btn">
+                <div class="skill-btn" data-skill="Responsive Web Design">
                   <i class="fa-solid fa-mobile-screen-button"></i> Responsive
                   Web Design
                 </div>
-                <div class="skill-btn">
+                <div class="skill-btn" data-skill="Vibe Coding">
                   <i class="fa-solid fa-wand-magic-sparkles"></i> Vibe Coding
                 </div>
               </div>
@@ -1398,7 +1605,7 @@
         <div class="projects-grid">
           <div class="project-card glass">
             <img
-              src="..//img/focus-flow.png"
+              src="/img/focus-flow.png"
               alt="Focus Flow"
               title="https://focusflow.online/"
             />
@@ -1417,7 +1624,7 @@
           </div>
           <div class="project-card glass">
             <img
-              src="..//img/expenza.jpeg"
+              src="/img/expenza.jpeg"
               alt="Expenza"
               title="https://expenza.page/"
             />
@@ -1436,7 +1643,7 @@
           </div>
           <div class="project-card glass">
             <img
-              src="..//img/bgremove.png"
+              src="/img/bgremove.png"
               alt="Background Remover"
               title="Background Remover"
             />
@@ -1457,7 +1664,7 @@
             </div>
           </div>
           <div class="project-card glass">
-            <img src="..//img/calculator.png" alt="Basic Calculator" />
+            <img src="/img/calculator.png" alt="Basic Calculator" />
             <div class="project-info">
               <h3>Basic Calculator</h3>
               <p>
@@ -1588,7 +1795,109 @@
       <button id="close-message-popup" class="btn">Close</button>
     </div>
 
+    <div id="skill-popup" class="popup glass">
+      <i class="fas fa-lightbulb"></i>
+      <h3 id="skill-popup-title">Skill</h3>
+      <p id="skill-popup-hint" class="popup-hint">Skill description:</p>
+      <p id="skill-popup-description" class="popup-description"></p>
+      <button id="close-skill-popup" class="btn">Close</button>
+    </div>
+
     <script src="script.js"></script>
+
+    <!-- Help Center -->
+    <button class="help-btn" id="help-btn" title="Help Center">
+      <i class="fas fa-question"></i>
+    </button>
+
+    <div class="help-popup glass" id="help-popup">
+      <div class="help-popup-header">
+        <h3><i class="fas fa-circle-question"></i> Help Center</h3>
+        <p>Frequently asked questions</p>
+      </div>
+      <div class="help-popup-body">
+        <div class="faq-item">
+          <button class="faq-question">
+            Who are you? <i class="fas fa-chevron-down"></i>
+          </button>
+          <div class="faq-answer">
+            I'm Sundar Maity, a final-year college student and a passionate
+            front-end developer who loves building interactive and visually
+            appealing web experiences.
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">
+            What services do you offer? <i class="fas fa-chevron-down"></i>
+          </button>
+          <div class="faq-answer">
+            I offer Front-End Development, Data Analysis with Power BI
+            dashboards, and Vibe Coding — blending creativity and code to build
+            lively digital experiences.
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">
+            What technologies do you use? <i class="fas fa-chevron-down"></i>
+          </button>
+          <div class="faq-answer">
+            I work with HTML, CSS, JavaScript, PHP (Laravel), React.js,
+            Angular.js, Tailwind CSS, MySQL, PostgreSQL, Python, Git, and Power
+            BI.
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">
+            Can I hire you for a project? <i class="fas fa-chevron-down"></i>
+          </button>
+          <div class="faq-answer">
+            Yes! Feel free to reach out through the Contact section or email me
+            at maitysundar84@gmail.com. I'd love to discuss your project.
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">
+            Are you open to internships? <i class="fas fa-chevron-down"></i>
+          </button>
+          <div class="faq-answer">
+            Absolutely! I'm always open to internship opportunities where I can
+            learn, grow, and contribute meaningfully.
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">
+            What is "Vibe Coding"? <i class="fas fa-chevron-down"></i>
+          </button>
+          <div class="faq-answer">
+            Vibe Coding is my approach to development — crafting web experiences
+            that don't just work beautifully, but feel alive and engaging with
+            creative animations and interactivity.
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">
+            What is your "Strength"? <i class="fas fa-chevron-down"></i>
+          </button>
+          <div class="faq-answer">
+            My strength is my passion for learning and creativity. I thrive on
+            exploring new technologies and finding innovative ways to solve
+            problems, which allows me to create unique and engaging web
+            experiences.
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">
+            What is your "Weakness"? <i class="fas fa-chevron-down"></i>
+          </button>
+          <div class="faq-answer">
+            My weakness is that I can be a bit of a perfectionist, which
+            sometimes leads me to spend extra time refining details. However,
+            I've learned to balance this by setting clear deadlines and
+            prioritizing tasks effectively.
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
 
@@ -1596,11 +1905,24 @@
   document.addEventListener("DOMContentLoaded", () => {
     // ======== Spotlight Cursor Follow ========
     const cursorSpotlight = document.querySelector(".cursor-spotlight");
+    let spotX = 0;
+    let spotY = 0;
+    let spotRaf = null;
 
-    window.addEventListener("mousemove", (e) => {
-      cursorSpotlight.style.left = `${e.clientX}px`;
-      cursorSpotlight.style.top = `${e.clientY}px`;
-    });
+    const renderSpotlight = () => {
+      cursorSpotlight.style.transform = `translate3d(${spotX}px, ${spotY}px, 0) translate(-50%, -50%)`;
+      spotRaf = null;
+    };
+
+    const handlePointerMove = (e) => {
+      spotX = e.clientX;
+      spotY = e.clientY;
+      if (!spotRaf) {
+        spotRaf = requestAnimationFrame(renderSpotlight);
+      }
+    };
+
+    window.addEventListener("pointermove", handlePointerMove);
 
     // ======== Dynamic Copyright Year ========
     document.getElementById("copyright-year").textContent =
@@ -1737,6 +2059,38 @@
       });
     });
 
+    const skillDescriptions = {
+      HTML: "Semantic page structure and accessible markup for modern websites.",
+      CSS: "Responsive layouts, animations, and polished UI styling.",
+      JavaScript:
+        "Interactive frontend logic, DOM handling, and event-driven behavior.",
+      "PHP (Laravel)":
+        "Backend development with MVC architecture, routing, and database integration.",
+      "UI/UX":
+        "User-first interface planning focused on clarity and usability.",
+      "Power BI":
+        "Data modeling and dashboard creation for actionable insights.",
+      Git: "Version control, branching, and collaborative workflow management.",
+      MySQL:
+        "Relational database design, queries, and structured data handling.",
+      "Angular.js":
+        "Component-based SPA development with Angular ecosystem basics.",
+      "React.js":
+        "Reusable component development and state-driven UI rendering.",
+      "Tailwind CSS":
+        "Utility-first styling for fast and consistent UI implementation.",
+      "C Programming":
+        "Core programming fundamentals including memory and logic building.",
+      Python:
+        "General scripting, problem solving, and automation-ready development.",
+      PostgreSQL:
+        "Advanced relational database operations with reliable performance.",
+      "Responsive Web Design":
+        "Mobile-first layouts that adapt cleanly across all screen sizes.",
+      "Vibe Coding":
+        "Combining clean code with aesthetics to create engaging web experiences.",
+    };
+
     // ======== NEW: Service Card 3D Tilt Effect ========
     const serviceCards = document.querySelectorAll(".service-card");
     const maxTilt = 12; // Max tilt in degrees
@@ -1781,12 +2135,19 @@
     // ======== CV Download & Contact Form Popups ========
     const downloadPopup = document.getElementById("download-popup");
     const messagePopup = document.getElementById("message-popup");
+    const skillPopup = document.getElementById("skill-popup");
+    const skillPopupTitle = document.getElementById("skill-popup-title");
+    const skillPopupHint = document.getElementById("skill-popup-hint");
+    const skillPopupDescription = document.getElementById(
+      "skill-popup-description",
+    );
 
     const downloadBtns = document.querySelectorAll(".download-cv-btn");
     const contactForm = document.getElementById("contact-form");
 
     const closeDownloadPopup = document.getElementById("close-download-popup");
     const closeMessagePopup = document.getElementById("close-message-popup");
+    const closeSkillPopup = document.getElementById("close-skill-popup");
 
     // Generic show/hide functions
     const showPopup = (popupEl) => {
@@ -1802,7 +2163,22 @@
       }
       downloadPopup.classList.remove("show");
       messagePopup.classList.remove("show");
+      skillPopup.classList.remove("show");
+      skillPopupDescription.classList.remove("show");
+      skillPopupHint.textContent = "Skill description:";
     };
+
+    skillBtns.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const skillName = btn.getAttribute("data-skill") || "Skill";
+        skillPopupTitle.textContent = skillName;
+        skillPopupDescription.textContent =
+          skillDescriptions[skillName] || "Description will be added soon.";
+        skillPopupDescription.classList.add("show");
+        skillPopupHint.textContent = "Skill description:";
+        showPopup(skillPopup);
+      });
+    });
 
     // Download CV Popup
     downloadBtns.forEach((btn) => {
@@ -1824,6 +2200,43 @@
     // Close buttons for alert popups
     closeDownloadPopup.addEventListener("click", hideAlertPopups);
     closeMessagePopup.addEventListener("click", hideAlertPopups);
+    closeSkillPopup.addEventListener("click", hideAlertPopups);
+    popupOverlay.addEventListener("click", hideAlertPopups);
+
+    // ======== Help Center Toggle ========
+    const helpBtn = document.getElementById("help-btn");
+    const helpPopup = document.getElementById("help-popup");
+
+    helpBtn.addEventListener("click", () => {
+      helpBtn.classList.toggle("active");
+      helpPopup.classList.toggle("show");
+    });
+
+    // Close help popup when clicking outside
+    document.addEventListener("click", (e) => {
+      if (!helpBtn.contains(e.target) && !helpPopup.contains(e.target)) {
+        helpBtn.classList.remove("active");
+        helpPopup.classList.remove("show");
+      }
+    });
+
+    // FAQ Accordion
+    document.querySelectorAll(".faq-question").forEach((question) => {
+      question.addEventListener("click", () => {
+        const item = question.parentElement;
+        const wasActive = item.classList.contains("active");
+
+        // Close all items
+        document
+          .querySelectorAll(".faq-item")
+          .forEach((faq) => faq.classList.remove("active"));
+
+        // Toggle clicked item
+        if (!wasActive) {
+          item.classList.add("active");
+        }
+      });
+    });
   });
 
   // Contact Form Handler with Proper Error Handling
@@ -1852,5 +2265,3 @@
       });
   });
 </script>
-
-
